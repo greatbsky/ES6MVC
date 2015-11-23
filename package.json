@@ -1,0 +1,14 @@
+{
+  "name": "IMNotify",
+  "version": "0.0.1",
+  "private": true,
+  "description": "notify immediately",
+  "scripts": {
+    "start": "node ./bin/startup.js"
+  },
+  "dependencies": {
+    "koa": "^2.0.0-alpha.3",
+    "koa-router": "^6.0.0"
+  },
+  "devDependencies": {}
+}
