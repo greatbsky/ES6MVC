@@ -18,13 +18,28 @@ module.exports = class {
         console.log(`......begin to initialize routers:`);
         const router = new Router();
         const dir = path.resolve(__dirname, './routers');
-        var files = fs.readdirSync(dir).filter((file) => ((file.endsWith("Router.js"))));
-        for(var file of files) {
-            const fun = require(path.resolve(dir, file));
-            fun(router);
-            console.log(`initialized router: ${file}`);
-        }
+        this.requireRouterJs(router, dir);
         app.use(router.routes()).use(router.allowedMethods());
+    }
+
+    /**
+     * require dirName下所有*Router.js文件，包括子目录
+     * @param router
+     * @param dir 文件夹完整的路径
+     */
+    static requireRouterJs(router, dir) {
+        var files = fs.readdirSync(dir);
+        for(var file of files) {
+            const filePath = path.resolve(dir, file);
+            const stats = fs.statSync(filePath);
+            if(stats.isDirectory()) {
+                this.requireRouterJs(router, filePath); //子目录
+            } else if(stats.isFile() && file.endsWith("Router.js")) {
+                const fun = require(filePath);
+                fun(router);
+                console.log(`initialized router: ${file}`);
+            }
+        }
     }
 
     /*
