@@ -7,6 +7,7 @@
     "start": "node ./bin/startup.js"
   },
   "dependencies": {
+    "handlebars": "^4.0.5",
     "koa": "^2.0.0-alpha.3",
     "koa-router": "^6.0.0"
   },

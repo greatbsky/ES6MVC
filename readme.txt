@@ -1,7 +1,7 @@
 参考手册：
 https://nodejs.org/api/
 https://github.com/koajs/koa/tree/master/docs/api
-
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference
 
 
 启动：

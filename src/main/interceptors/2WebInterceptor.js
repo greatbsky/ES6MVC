@@ -9,10 +9,10 @@ const BaseInterceptorHandler = require("./BaseInterceptorHandler");
 module.exports = class LogInterceptor extends BaseInterceptorHandler {
 
     static before(ctx) {
-        console.log(`before invoke router`);
+        //console.log(`before invoke router`);
     }
 
     static after(ctx) {
-        console.log(`after invoke router`);
+        //console.log(`after invoke router`);
     }
 }
