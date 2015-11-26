@@ -6,7 +6,7 @@
 
 const BaseInterceptorHandler = require("./BaseInterceptorHandler");
 
-module.exports = class LogInterceptor extends BaseInterceptorHandler {
+module.exports = class WebInterceptor extends BaseInterceptorHandler {
 
     static before(ctx) {
         //console.log(`before invoke router`);

@@ -18,6 +18,7 @@ module.exports = class {
         console.log(`starting ............................................`);
         const app = new Koa();
 
+        appModules.initMongoDB();
         appModules.initStatic(app);
         appModules.initHeaders(app);
         appModules.initInterceptors(app);

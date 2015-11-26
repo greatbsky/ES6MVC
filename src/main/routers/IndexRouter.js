@@ -11,7 +11,7 @@ module.exports = function(router) {
     首页
      */
     router.get('/', (ctx, next) => {
-        ctx.model = { "name": "Alan"};
+        ctx.model.name = "Alana";
         return 'index';
     });
 }

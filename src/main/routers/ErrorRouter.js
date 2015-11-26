@@ -11,7 +11,7 @@ module.exports = function(router) {
      404页
      */
     router.get('/err/404', (ctx, next) => {
-        ctx.body = "<h1>404</h1>h1>";
+        ctx.body = "<h1>404</h1>";
     });
 
     /*

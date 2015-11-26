@@ -25,4 +25,30 @@ global.gconf = require('../resources/config/config');
 })();
 
 
+/*自动require所有的enum */
+(function requireAllDao() {
+    console.log(`......begin to require All Enums:`);
+    const dir = path.resolve(__dirname, './enums');
+    var files = fs.readdirSync(dir).filter((file) => ((file.startsWith("E") && file.endsWith(".js"))));
+    for (var file of files) {
+        var fileName = file.substring(0, file.lastIndexOf(".js"));
+        global[fileName] = require(path.resolve(dir, file));
+        console.log(`require enum: ${file}`);
+    }
+})();
+
+/*自动require所有的dao */
+(function requireAllDao() {
+    console.log(`......begin to require All Dao:`);
+    const dir = path.resolve(__dirname, './dao');
+    var files = fs.readdirSync(dir).filter((file) => ((file.endsWith("Dao.js"))));
+    for (var file of files) {
+        var fileName = file.substring(0, file.lastIndexOf(".js"));
+        global[fileName] = require(path.resolve(dir, file));
+        console.log(`require dao: ${file}`);
+    }
+})();
+
+
+
 

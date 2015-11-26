@@ -11,7 +11,7 @@ module.exports = class {
 
     constructor(rootPath, options) {
         this.root = rootPath;
-        this.staticDirs = ['/js/', '/css/', '/imgs/', '/favicon.ico'];
+        this.staticRegexs = options.staticRegexs == null ? [/^\/js\/.*/i, /^\/css\/.*/i, /^\/imgs\/.*/i, /^\/favicon.ico$/i] : options.staticRegexs;
         this.maxAge = options.maxAge == null ? 86400000 : Math.min(Math.max(0, options.maxAge), 31556926000);
     }
 
@@ -36,8 +36,9 @@ module.exports = class {
      * @returns {boolean}
      */
     isStatic(path) {
-        for (var str of this.staticDirs) {
-            if (path.startsWith(str)) {
+        for (var reg of this.staticRegexs) {
+            //console.log(`reg: ${reg}, ${path}, ${reg.test(path)}`);
+            if (reg.test(path)) {
                 return true;
             }
         }

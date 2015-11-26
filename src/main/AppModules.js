@@ -10,14 +10,28 @@ const fs = require('fs');
 const path = require('path');
 const hbs = require('handlebars');
 const StaticServe = new require('./modules/staticServe');
+const mongoose = require('mongoose');
 
 module.exports = class {
+
+    /*
+     初始化mongodb数据库相关
+     */
+    static initMongoDB() {
+        mongoose.connect(gconf.db.mongodb.url, gconf.db.mongodb.options);
+        global.mongoose = mongoose;
+        global.Schema = mongoose.Schema;
+        global.ObjectId = Schema.ObjectId;
+    }
 
     /*
      初始化静态文件
      */
     static initStatic(app) {
-        const serve = new StaticServe(path.resolve(__dirname, '../../', './public/'), {});
+        const options = {
+            staticRegexs : gconf.web.staticRegexs
+        };
+        const serve = new StaticServe(path.resolve(__dirname, '../../', './public/'), options);
         app.use((ctx, next) => {serve.handle(ctx, next)});
     }
 
@@ -110,15 +124,17 @@ module.exports = class {
      */
     static initViews(app) {
         app.use(function (ctx, next) {
-            ctx.model = {};
+            ctx.model = gconf.view.model;
             next().then((result) => {
-                if(typeof(result) == "string" && result.length > 0) {
+                if(typeof(result) == "string" && result.length > 0) { //返回字符串，ctx.model传值
                     var dir = path.resolve(__dirname, './views');
                     var files = FileUtil.searchFiles(dir, function(f){return f == `${result}.html`}, true);
                     var tmplPath = SetUtil.getOne(files);
                     var tmplContent = fs.readFileSync(tmplPath, { flags: 'r', encoding: "utf-8"});
                     var template = hbs.compile(tmplContent);
                     ctx.body = template(ctx.model);
+                } else if(typeof(result) == "object") { //返回object对象
+                    ctx.body = result;
                 }
             });
         });
