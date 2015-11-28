@@ -5,9 +5,11 @@
  * @author Architect.bian
  */
 
+require('./Project');
+require('./Global');
 const Koa = require('koa');
 const appModules = require('./AppModules');
-require('./Global');
+const log = Log(__filename);
 
 module.exports = class {
 
@@ -15,7 +17,7 @@ module.exports = class {
     运行程序，拦截器、controller等
      */
     static run (){
-        console.log(`starting ............................................`);
+        log.verbose(`starting ............................................`);
         const app = new Koa();
 
         appModules.initMongoDB();
@@ -28,7 +30,7 @@ module.exports = class {
         appModules.initError404(app);
 
         app.listen(gconf.port, () => {
-            console.log(`finished starting ......................................`);
+            log.info(`Congratulation! http://127.0.0.1:${gconf.port} start up successfully!`);
         });
     }
 }

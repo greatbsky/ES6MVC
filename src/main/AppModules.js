@@ -11,6 +11,7 @@ const path = require('path');
 const hbs = require('handlebars');
 const StaticServe = new require('./modules/staticServe');
 const mongoose = require('mongoose');
+var log = Log(__filename);
 
 module.exports = class {
 
@@ -50,7 +51,7 @@ module.exports = class {
      初始化router
      */
     static initRouters(app) {
-        console.log(`......begin to initialize routers:`);
+        log.verbose(`......begin to initialize routers:`);
         const router = new Router();
         const dir = path.resolve(__dirname, './routers');
         this.requireRouterJs(router, dir);
@@ -72,7 +73,7 @@ module.exports = class {
             } else if (stats.isFile() && file.endsWith("Router.js")) {
                 const fun = require(filePath);
                 fun(router);
-                console.log(`initialized router: ${file}`);
+                log.verbose(`initialized router: ${file}`);
             }
         }
     }
@@ -82,13 +83,13 @@ module.exports = class {
      * @param app
      */
     static initInterceptors(app) {
-        console.log(`......begin to initialize interceptor:`);
+        log.verbose(`......begin to initialize interceptor:`);
         const dir = path.resolve(__dirname, './interceptors');
         var files = fs.readdirSync(dir).filter((file) => ((file.endsWith("Interceptor.js"))));
         for (var file of files) {
             const interceptor = require(path.resolve(dir, file));
             interceptor.handle(app);
-            console.log(`initialized interceptor: ${file}`);
+            log.verbose(`initialized interceptor: ${file}`);
         }
     }
 
@@ -103,7 +104,7 @@ module.exports = class {
                 ctx.body = '500 ^_^ <br />';
                 ctx.body += err;
                     //ctx.redirect("/err/500");
-                console.error(`${err}`);
+                log.error(`${err}`);
             });
         });
     }

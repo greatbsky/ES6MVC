@@ -4,6 +4,7 @@
  * 日志拦截器
  */
 
+const log = Log(__filename);
 const BaseInterceptorHandler = require("./BaseInterceptorHandler");
 
 module.exports = class LogInterceptor extends BaseInterceptorHandler {
@@ -14,7 +15,7 @@ module.exports = class LogInterceptor extends BaseInterceptorHandler {
             const start = new Date;
             return next().then(() => {
                 const ms = new Date - start;
-                console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+                log.debug(`${ctx.method} ${ctx.url} - ${ms}ms`);
             });
         });
     }

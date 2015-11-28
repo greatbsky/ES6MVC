@@ -4,6 +4,7 @@
  * favicon
  */
 
+const log = Log(__filename);
 const fs = require('fs');
 
 module.exports = class favicon {
@@ -14,7 +15,6 @@ module.exports = class favicon {
     }
 
     handle(ctx, next) {
-        console.log(`ctx.path: ${ctx.path}`);
         if ('/favicon.ico' != ctx.path) {
             return next();
         }
@@ -24,8 +24,6 @@ module.exports = class favicon {
             return;
         }
         var icon = fs.readFileSync(this.path);// todo 异步？
-        console.log(`icon: ${icon}`);
-        console.log(`this.path: ${this.path}`);
         //ctx.set('Cache-Control', 'public, max-age=' + (this.maxAge / 1000 | 0));
         ctx.type = 'image/x-icon';
         ctx.body = icon;

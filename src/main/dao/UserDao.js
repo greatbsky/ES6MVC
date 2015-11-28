@@ -5,6 +5,8 @@
  * @author Architect.bian
  */
 
+const log = Log(__filename);
+
 module.exports = class UserDao extends BaseDao {
 
     static newSchema(m) {
@@ -14,6 +16,6 @@ module.exports = class UserDao extends BaseDao {
     }
 
     static insert(arg){
-        console.log(`UserDao.insert: ${JsonUtil.toString(arg)}`);
+        log.debug(`UserDao.insert: ${JsonUtil.toString(arg)}`);
     }
 }
