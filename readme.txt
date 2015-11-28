@@ -1,4 +1,4 @@
-参考手册：
+﻿参考手册：
 https://nodejs.org/api/
 https://github.com/koajs/koa/tree/master/docs/api
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference
@@ -8,7 +8,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference
 npm start 或 node ./bin/startup.js
 
 
-
+发布测试：
+gulp
 
 
 
