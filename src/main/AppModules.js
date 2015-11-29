@@ -32,7 +32,7 @@ module.exports = class {
         const options = {
             staticRegexs : gconf.web.staticRegexs
         };
-        const serve = new StaticServe(path.resolve(__dirname, '../../', './public/'), options);
+        const serve = new StaticServe(path.resolve(project.path.public), options);
         app.use((ctx, next) => {serve.handle(ctx, next)});
     }
 
@@ -53,7 +53,7 @@ module.exports = class {
     static initRouters(app) {
         log.verbose(`......begin to initialize routers:`);
         const router = new Router();
-        const dir = path.resolve(__dirname, './routers');
+        const dir = path.resolve(project.path.main, './routers');
         this.requireRouterJs(router, dir);
         app.use(router.routes()).use(router.allowedMethods());
     }
@@ -84,7 +84,7 @@ module.exports = class {
      */
     static initInterceptors(app) {
         log.verbose(`......begin to initialize interceptor:`);
-        const dir = path.resolve(__dirname, './interceptors');
+        const dir = path.resolve(project.path.main, './interceptors');
         var files = fs.readdirSync(dir).filter((file) => ((file.endsWith("Interceptor.js"))));
         for (var file of files) {
             const interceptor = require(path.resolve(dir, file));
@@ -128,7 +128,7 @@ module.exports = class {
             ctx.model = gconf.view.model;
             next().then((result) => {
                 if(typeof(result) == "string" && result.length > 0) { //返回字符串，ctx.model传值
-                    var dir = path.resolve(__dirname, './views');
+                    var dir = path.resolve(project.path.main, './views');
                     var files = FileUtil.searchFiles(dir, function(f){return f == `${result}.html`}, true);
                     var tmplPath = SetUtil.getOne(files);
                     var tmplContent = fs.readFileSync(tmplPath, { flags: 'r', encoding: "utf-8"});

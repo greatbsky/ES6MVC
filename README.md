@@ -1,2 +1,3 @@
 # ES6MVC
-a demo of nodejs es6 project,with koa2 socket.io handlbars and so on ...
+es6mvc, a full stack mvc framework supports ES6. Integrate with koa/handlebars/mongoose/redis/winston
+See demo: https://github.com/greatbsky/ES6MVCDemo

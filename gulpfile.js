@@ -1,13 +1,5 @@
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
-var del = require('del');
-
-//清理
-gulp.task('clean', function() {
-    return del('./bin/logs/*').then(paths => {
-        console.log('Deleted files:\n', paths.join('\n'));
-    });
-});
 
 // 测试
 gulp.task('test', function () {
@@ -16,4 +8,4 @@ gulp.task('test', function () {
 });
 
 // 注册缺省任务
-gulp.task('default', ['clean', 'test']);
+gulp.task('default', ['test']);

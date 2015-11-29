@@ -6,7 +6,6 @@
  */
 
 require('./Project');
-require('./Global');
 const Koa = require('koa');
 const appModules = require('./AppModules');
 const log = Log(__filename);

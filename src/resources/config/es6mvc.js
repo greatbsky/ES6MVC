@@ -7,8 +7,8 @@
 
 const path = require('path');
 
-global.project = {};
-global.project.root = path.resolve(__dirname, './../../../');
+global.project = global.project || {};
+global.project.root = global.project.root || path.resolve(__dirname, './../../../');
 module.exports = {
     path: {
         root: global.project.roo,
