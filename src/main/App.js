@@ -21,14 +21,14 @@ module.exports = class {
      * @param appModules
      * @param app
      */
-    static initModules(appModules, app) {
-        appModules.initStatic(app);
-        appModules.initHeaders(app);
-        appModules.initInterceptors(app);
-        appModules.initErrors(app);
-        appModules.initViews(app);
-        appModules.initRouters(app);
-        appModules.initError404(app);
+    static initModules(modules, app) {
+        modules.initStatic(app);
+        modules.initHeaders(app);
+        modules.initInterceptors(app);
+        modules.initErrors(app);
+        modules.initViews(app);
+        modules.initRouters(app);
+        modules.initError404(app);
     }
 
     /*
