@@ -22,7 +22,6 @@ module.exports = class {
      * @param app
      */
     static initModules(appModules, app) {
-        appModules.initMongoDB();
         appModules.initStatic(app);
         appModules.initHeaders(app);
         appModules.initInterceptors(app);
