@@ -6,6 +6,7 @@
  */
 
 const Router = require('koa-router');
+const bodyParser = require('koa-bodyparser');
 const fs = require('fs');
 const path = require('path');
 const hbs = require('handlebars');
@@ -55,7 +56,7 @@ module.exports = class {
         const router = new Router();
         const dir = path.resolve(project.path.main, './routers');
         this.requireRouterJs(router, dir);
-        app.use(router.routes()).use(router.allowedMethods());
+        app.use(router.routes()).use(router.allowedMethods()).use(bodyParser());
     }
 
     /**
