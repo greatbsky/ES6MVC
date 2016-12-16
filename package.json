@@ -1,6 +1,6 @@
 {
   "name": "es6mvc",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "es6mvc, a full stack mvc framework supports ES6",
   "main": "src/main/App.js",
   "repository": {
