@@ -22,6 +22,7 @@ module.exports = class {
      * @param app
      */
     static initModules(modules, app) {
+        modules.initParser(app);
         modules.initStatic(app);
         modules.initHeaders(app);
         modules.initInterceptors(app);

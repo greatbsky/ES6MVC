@@ -25,7 +25,14 @@ module.exports = class {
         global.Schema = mongoose.Schema;
         global.ObjectId = Schema.ObjectId;
     }
-
+    
+    /*
+     初始化参数解析
+     */
+    static initParser(app) {
+        app.use(bodyParser());
+    }
+    
     /*
      初始化静态文件
      */
@@ -56,7 +63,7 @@ module.exports = class {
         const router = new Router();
         const dir = path.resolve(project.path.main, './routers');
         this.requireRouterJs(router, dir);
-        app.use(router.routes()).use(router.allowedMethods()).use(bodyParser());
+        app.use(router.routes()).use(router.allowedMethods());
     }
 
     /**
