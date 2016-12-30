@@ -11,7 +11,7 @@ global.project = global.project || {};
 global.project.root = global.project.root || path.resolve(__dirname, './../../../');
 module.exports = {
     path: {
-        root: global.project.roo,
+        root: global.project.root,
         public: path.resolve(global.project.root, './public'),
         src: path.resolve(global.project.root, './src'),
         main: path.resolve(global.project.root, './src/main'),
