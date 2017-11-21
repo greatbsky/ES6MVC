@@ -1,6 +1,6 @@
 {
   "name": "es6mvc",
-  "version": "0.0.8",
+  "version": "1.0.0",
   "description": "es6mvc, a full stack mvc framework supports ES6",
   "main": "src/main/App.js",
   "repository": {
@@ -14,15 +14,15 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "co-body": "^4.2.0",
-    "handlebars": "^4.0.6",
-    "koa": "^2.0.0",
-    "koa-bodyparser": "^3.2.0",
-    "koa-router": "^7.0.1",
-    "mongoose": "^4.7.1",
-    "redis": "^2.6.3",
-    "socket.io": "^1.7.1",
-    "winston": "^2.3.0"
+    "co-body": "^5.1.1",
+    "handlebars": "^4.0.11",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.3.0",
+    "mongoose": "^4.13.4",
+    "redis": "^2.8.0",
+    "socket.io": "^2.0.4",
+    "winston": "^2.4.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",

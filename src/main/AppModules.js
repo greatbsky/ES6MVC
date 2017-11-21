@@ -25,14 +25,14 @@ module.exports = class {
         global.Schema = mongoose.Schema;
         global.ObjectId = Schema.ObjectId;
     }
-    
+
     /*
      初始化参数解析
      */
     static initParser(app) {
         app.use(bodyParser());
     }
-    
+
     /*
      初始化静态文件
      */
@@ -48,8 +48,8 @@ module.exports = class {
      初始化header
      */
     static initHeaders(app) {
-        app.use(function (ctx, next) {
-            return next().then(
+        app.use(async (ctx, next) => {
+            return await next().then(
                 ctx.type = "Content-Type", "text/html; charset=utf-8"
             );
         });
@@ -132,9 +132,9 @@ module.exports = class {
      * @param app
      */
     static initViews(app) {
-        app.use(function (ctx, next) {
+        app.use(async (ctx, next) => {
             ctx.model = gconf.view.model;
-            next().then((result) => {
+            await next().then((result) => {
                 if(typeof(result) == "string" && result.length > 0) { //返回字符串，ctx.model传值
                     var dir = path.resolve(project.path.main, './views');
                     var files = FileUtil.searchFiles(dir, function(f){return f == `${result}.html`}, true);

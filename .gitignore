@@ -1,3 +1,4 @@
 
 /node_modules
 /bin/logs
+package-lock.json

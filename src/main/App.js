@@ -35,7 +35,7 @@ module.exports = class {
     /*
     运行程序，拦截器、controller等
      */
-    static run (){
+    static run () {
         require('./Project');
         const log = Log(__filename);
 
