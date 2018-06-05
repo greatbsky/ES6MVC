@@ -31,6 +31,17 @@ module.exports = class {
      */
     static initParser(app) {
         app.use(bodyParser());
+        // app.use((ctx, next) => {
+        //     if (ctx.request.type == "application/json" ) { //将提交的完整json数据作为body传递
+        //         let _opts = {};
+        //         return cobody.json(ctx.req, _opts).then((body) => {
+        //             ctx.request.body = body;
+        //             return next();
+        //         });
+        //     } else {
+        //         return next();
+        //     }
+        // });
     }
 
     /*
@@ -41,7 +52,7 @@ module.exports = class {
             staticRegexs : gconf.web.staticRegexs
         };
         const serve = new StaticServe(path.resolve(project.path.public), options);
-        app.use((ctx, next) => {serve.handle(ctx, next)});
+        app.use(async (ctx, next) => {await serve.handle(ctx, next)});
     }
 
     /*
@@ -106,8 +117,8 @@ module.exports = class {
      * @param app
      */
     static initErrors(app) {
-        app.use(function (ctx, next) {
-            next().catch((err) => {
+        app.use(async (ctx, next) => {
+            await next().catch((err) => {
                 ctx.status = 500;
                 ctx.body = '500 ^_^ <br />';
                 ctx.body += err;
